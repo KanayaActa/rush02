@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 22:49:46 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/21 22:56:17 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 04:51:57 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ char	*word_dup(char *str, char *charset)
 
 char	**ft_split(char *str, char *charset)
 {
-	char **result;
-	int i;
-	int j;
-	int words;
+	char	**result;
+	int		i;
+	int		j;
+	int		words;
 
 	words = count_words(str, charset);
 	result = (char **)malloc((words + 1) * sizeof(char *));

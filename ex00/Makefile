@@ -6,7 +6,7 @@
 #    By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/21 12:39:52 by miwasa            #+#    #+#              #
-#    Updated: 2024/09/22 00:26:10 by miwasa           ###   ########.fr        #
+#    Updated: 2024/09/22 05:23:02 by miwasa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ SRCS = ft_is_valid_arg.c \
 	   ft_print.c \
 	   ft_read_dict.c \
 	   ft_convert_num_to_words.c \
+	   ft_convert_num_to_words2.c \
+	   ft_convert_num_to_words3.c \
 	   ft_find_word.c \
 	   ft_into_entry.c \
+	   ft_into_entry2.c \
 	   ft_split.c \
 	   ft_strcmp.c \
 	   ft_strdup.c \
