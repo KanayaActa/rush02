@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:12:10 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 23:14:38 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 23:23:54 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	is_valid_arg_dict(int ac, char **av, char **num_str, char **dict)
 char	*ft_atoa(char *str)
 {
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+')
 		str++;
 	return (str);
 }
