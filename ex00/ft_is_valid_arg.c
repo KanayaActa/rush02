@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 23:23:13 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 01:12:35 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 14:12:46 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	ft_is_valid_arg(int ac, char **av, char **num_str, char **dict)
 {
-	if (ac == 2)
+	if (ac == 1 || ac == 2)
 	{
-		*num_str = av[1];
 		*dict = ft_read_dict("numbers.dict");
 		if (*dict == NULL)
+			return (0);
+		if (ac == 1)
+			*num_str = ft_stdin();
+		if (ac == 2)
+			*num_str = av[1];
+		if (*num_str == NULL)
 			return (0);
 	}
 	else if (ac == 3)

@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:14:26 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 13:18:40 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 15:49:23 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,13 @@ t_entry		*ft_into_entry(char *dict);
 int			ft_handle_zero(t_entry *entries, char *num_str);
 
 void		ft_free_entries(t_entry *entries);
+
+char		*ft_stdin(void);
+
+void		initialize_result(char **result, size_t *result_size);
+char		*append_buffer(char *result, size_t result_size, char *buffer,
+				ssize_t bytes_read);
+int			find_newline(char *buffer, ssize_t bytes_read);
+void		finalize_result(char *result, size_t result_size);
 
 #endif

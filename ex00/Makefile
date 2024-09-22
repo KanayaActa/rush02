@@ -6,7 +6,7 @@
 #    By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/21 12:39:52 by miwasa            #+#    #+#              #
-#    Updated: 2024/09/22 13:20:13 by miwasa           ###   ########.fr        #
+#    Updated: 2024/09/22 14:12:39 by miwasa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = ft_is_valid_arg.c \
 	   ft_into_entry.c \
 	   ft_into_entry2.c \
 	   ft_split.c \
+	   ft_stdin.c \
 	   ft_strcmp.c \
 	   ft_strdup.c \
 	   ft_strjoin.c \
