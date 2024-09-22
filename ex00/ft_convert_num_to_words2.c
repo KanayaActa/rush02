@@ -6,41 +6,44 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 04:47:02 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 04:51:04 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:28:13 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
 
-void	process_tens_and_units(t_entry *entries, char *digits)
+void	process_tens_and_units(t_entry *entries, char *digits, t_context *ctx)
 {
 	if (digits[1] == '1')
 	{
-		handle_teen_word(entries, digits);
+		handle_teen_word(entries, digits, ctx);
 	}
 	else
 	{
 		if (digits[1] != '0')
-			handle_tens_word(entries, digits);
+			handle_tens_word(entries, digits, ctx);
 		if (digits[2] != '0')
 		{
 			if (digits[1] != '0')
 				ft_putstr(" ");
-			handle_units_word(entries, digits);
+			handle_units_word(entries, digits, ctx);
 		}
 	}
 }
 
-void	handle_magnitude_word(t_entry *entries, char *magnitude_num)
+void	handle_magnitude_word(t_entry *entries, char *magnitude_num,
+		t_context *ctx)
 {
 	char	*word;
 
 	word = ft_find_word(entries, magnitude_num);
 	if (word)
 	{
-		ft_putstr(" ");
+		if (!ctx->is_first)
+			ft_putstr(" ");
 		ft_putstr(word);
 		free(word);
+		ctx->is_first = 0;
 	}
 }
 
@@ -67,7 +70,7 @@ void	process_magnitude(t_context *ctx, int chunk_index)
 			i++;
 		}
 		magnitude_num[num_zeros + 1] = '\0';
-		handle_magnitude_word(ctx->entries, magnitude_num);
+		handle_magnitude_word(ctx->entries, magnitude_num, ctx);
 		free(magnitude_num);
 	}
 }
@@ -82,17 +85,4 @@ void	fill_digits_with_zeros(char *digits, int chunk_size)
 		digits[j] = '0';
 		j++;
 	}
-}
-
-void	copy_chunk(char *digits, char *num_str, int i, int chunk_size)
-{
-	int	j;
-
-	j = 0;
-	while (j < chunk_size)
-	{
-		digits[j + (3 - chunk_size)] = num_str[i + j];
-		j++;
-	}
-	digits[3] = '\0';
 }
