@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:12:10 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:57:05 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 13:22:06 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ int	main(int ac, char **av)
 	}
 	if (!ft_is_valid_dict(dict))
 	{
+		free(dict);
 		print_error("Dict Error\n");
 		return (1);
 	}
 	entries = ft_into_entry(dict);
 	if (ft_handle_zero(entries, num_str))
 	{
-		free(entries);
+		ft_free_entries(entries);
 		return (0);
 	}
 	ft_convert_num_to_words(num_str, entries);
+	ft_free_entries(entries);
 	return (0);
 }

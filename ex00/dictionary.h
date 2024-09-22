@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:14:26 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:45:59 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 13:18:40 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ t_entry		parse_line_to_entry(char *line);
 t_entry		*ft_into_entry(char *dict);
 
 int			ft_handle_zero(t_entry *entries, char *num_str);
+
+void		ft_free_entries(t_entry *entries);
 
 #endif

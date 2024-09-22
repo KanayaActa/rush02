@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 05:16:28 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:16:41 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 13:17:49 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ t_entry	*ft_into_entry(char *dict)
 	}
 	parse_all_lines(lines, entries);
 	free_split(lines);
+	free(dict);
 	return (entries);
 }
