@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:12:10 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:51:14 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:57:05 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	ft_convert_num_to_words(num_str, entries);
-	ft_putstr("\n");
 	return (0);
 }
