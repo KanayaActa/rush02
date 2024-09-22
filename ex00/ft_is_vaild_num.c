@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 23:21:38 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:50:07 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 23:17:31 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,15 @@ int	ft_is_valid_num(char *str)
 		str++;
 	if (*str != '\0')
 		return (0);
+	return (1);
+}
+
+int	ft_is_valid_num2(char *num_str)
+{
+	if (ft_strlen(num_str) >= 39)
+	{
+		print_error("Dict Error\n");
+		return (0);
+	}
 	return (1);
 }

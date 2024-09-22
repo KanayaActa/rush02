@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:14:26 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 18:24:00 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 23:15:57 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,7 @@ char		*append_buffer(char *result, size_t result_size, char *buffer,
 				ssize_t bytes_read);
 int			find_newline(char *buffer, ssize_t bytes_read);
 void		finalize_result(char *result, size_t result_size);
+
+int			ft_is_valid_num2(char *num_str);
 
 #endif
