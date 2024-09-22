@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 21:14:26 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 05:38:29 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:16:59 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char		**split_line(char *line);
 char		*process_key(char **sep);
 
 char		*process_value(char **sep);
+
+int			count_size(char **words);
 
 t_entry		parse_line_to_entry(char *line);
 

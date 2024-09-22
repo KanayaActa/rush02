@@ -6,11 +6,21 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 05:16:28 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 05:38:03 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:16:41 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
+
+int	count_size(char **words)
+{
+	int	count;
+
+	count = 0;
+	while (words[count])
+		count++;
+	return (count);
+}
 
 int	count_lines(char **lines)
 {

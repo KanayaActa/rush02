@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 00:38:37 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 05:37:49 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 11:16:26 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*process_value(char **sep)
 	words = ft_split(sep[1], " ");
 	if (!words)
 		return (NULL);
-	joined_value = ft_strjoin(1, words, " ");
+	joined_value = ft_strjoin(count_size(words), words, " ");
 	if (!joined_value)
 	{
 		free_split(words);
