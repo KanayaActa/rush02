@@ -6,39 +6,43 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 04:47:02 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:28:13 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 18:22:12 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
 
-void	process_tens_and_units(t_entry *entries, char *digits, t_context *ctx)
+void	process_tens_and_units(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
+	fg->hyphen = 0;
 	if (digits[1] == '1')
 	{
-		handle_teen_word(entries, digits, ctx);
+		handle_teen_word(entries, digits, ctx, fg);
 	}
 	else
 	{
 		if (digits[1] != '0')
-			handle_tens_word(entries, digits, ctx);
+		{
+			fg->hyphen = 1;
+			handle_tens_word(entries, digits, ctx, fg);
+		}
 		if (digits[2] != '0')
 		{
-			if (digits[1] != '0')
-				ft_putstr(" ");
-			handle_units_word(entries, digits, ctx);
+			handle_units_word(entries, digits, ctx, fg);
 		}
 	}
 }
 
 void	handle_magnitude_word(t_entry *entries, char *magnitude_num,
-		t_context *ctx)
+		t_context *ctx, t_flag *fg)
 {
 	char	*word;
 
 	word = ft_find_word(entries, magnitude_num);
 	if (word)
 	{
+		fg->comma = 1;
 		if (!ctx->is_first)
 			ft_putstr(" ");
 		ft_putstr(word);
@@ -47,7 +51,7 @@ void	handle_magnitude_word(t_entry *entries, char *magnitude_num,
 	}
 }
 
-void	process_magnitude(t_context *ctx, int chunk_index)
+void	process_magnitude(t_context *ctx, int chunk_index, t_flag *fg)
 {
 	int		i;
 	int		num_zeros;
@@ -70,7 +74,8 @@ void	process_magnitude(t_context *ctx, int chunk_index)
 			i++;
 		}
 		magnitude_num[num_zeros + 1] = '\0';
-		handle_magnitude_word(ctx->entries, magnitude_num, ctx);
+		fg->comma = 1;
+		handle_magnitude_word(ctx->entries, magnitude_num, ctx, fg);
 		free(magnitude_num);
 	}
 }

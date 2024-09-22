@@ -6,7 +6,7 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 04:49:02 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 11:57:11 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 18:25:07 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ void	copy_chunk(char *digits, char *num_str, int i, int chunk_size)
 	digits[3] = '\0';
 }
 
-void	process_three_digits(t_context *ctx, char *digits, int chunk_index)
+void	process_three_digits(t_context *ctx, char *digits, int chunk_index,
+		t_flag *fg)
 {
-	process_hundreds(ctx->entries, digits, ctx);
-	process_tens_and_units(ctx->entries, digits, ctx);
-	process_magnitude(ctx, chunk_index);
+	fg->and = 0;
+	fg->hyphen = 0;
+	process_hundreds(ctx->entries, digits, ctx, fg);
+	process_tens_and_units(ctx->entries, digits, ctx, fg);
+	process_magnitude(ctx, chunk_index, fg);
 }
 
 void	process_chunks(t_context *ctx)
@@ -38,9 +41,11 @@ void	process_chunks(t_context *ctx)
 	int		i;
 	int		chunk_size;
 	char	digits[4];
+	t_flag	fg;
 
 	chunk_index = ctx->total_chunks - 1;
 	i = 0;
+	fg.comma = 0;
 	while (i < ctx->length)
 	{
 		if (chunk_index == ctx->total_chunks - 1)
@@ -51,7 +56,7 @@ void	process_chunks(t_context *ctx)
 		copy_chunk(digits, ctx->num_str, i, chunk_size);
 		if (!(digits[0] == '0' && digits[1] == '0' && digits[2] == '0'))
 		{
-			process_three_digits(ctx, digits, chunk_index);
+			process_three_digits(ctx, digits, chunk_index, &fg);
 		}
 		i += chunk_size;
 		chunk_index--;

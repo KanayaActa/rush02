@@ -6,13 +6,14 @@
 /*   By: miwasa <miwasa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 03:39:11 by miwasa            #+#    #+#             */
-/*   Updated: 2024/09/22 15:32:07 by miwasa           ###   ########.fr       */
+/*   Updated: 2024/09/22 18:17:02 by miwasa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
 
-void	handle_hundred_word(t_entry *entries, char *digits, t_context *ctx)
+void	handle_hundred_word(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
 	char	*word;
 
@@ -20,14 +21,21 @@ void	handle_hundred_word(t_entry *entries, char *digits, t_context *ctx)
 	if (word)
 	{
 		if (!ctx->is_first)
-			ft_putstr(" ");
+		{
+			if (fg->comma == 1)
+				ft_putstr(", ");
+			else
+				ft_putstr(" ");
+			fg->comma = 0;
+		}
 		ft_putstr(word);
 		free(word);
 		ctx->is_first = 0;
 	}
 }
 
-void	process_hundreds(t_entry *entries, char *digits, t_context *ctx)
+void	process_hundreds(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
 	char	hundred_str[2];
 
@@ -35,15 +43,14 @@ void	process_hundreds(t_entry *entries, char *digits, t_context *ctx)
 	hundred_str[1] = '\0';
 	if (digits[0] != '0')
 	{
-		handle_hundred_word(entries, hundred_str, ctx);
-		ft_putstr(" ");
-		handle_hundred_word(entries, "100", ctx);
-		if (digits[1] != '0' || digits[2] != '0')
-			ft_putstr(" ");
+		fg->and = 1;
+		handle_hundred_word(entries, hundred_str, ctx, fg);
+		handle_hundred_word(entries, "100", ctx, fg);
 	}
 }
 
-void	handle_teen_word(t_entry *entries, char *digits, t_context *ctx)
+void	handle_teen_word(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
 	char	teen_str[3];
 	char	*word;
@@ -55,14 +62,24 @@ void	handle_teen_word(t_entry *entries, char *digits, t_context *ctx)
 	if (word)
 	{
 		if (!ctx->is_first)
-			ft_putstr(" ");
+		{
+			if (fg->and == 1)
+				ft_putstr(" and ");
+			else if (fg->comma == 1)
+				ft_putstr(", ");
+			else
+				ft_putstr(" ");
+			fg->and = 0;
+			fg->comma = 0;
+		}
 		ft_putstr(word);
 		free(word);
 		ctx->is_first = 0;
 	}
 }
 
-void	handle_tens_word(t_entry *entries, char *digits, t_context *ctx)
+void	handle_tens_word(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
 	char	ten_str[3];
 	char	*word;
@@ -74,14 +91,24 @@ void	handle_tens_word(t_entry *entries, char *digits, t_context *ctx)
 	if (word)
 	{
 		if (!ctx->is_first)
-			ft_putstr(" ");
+		{
+			if (fg->and == 1)
+				ft_putstr(" and ");
+			else if (fg->comma == 1)
+				ft_putstr(", ");
+			else
+				ft_putstr(" ");
+			fg->and = 0;
+			fg->comma = 0;
+		}
 		ft_putstr(word);
 		free(word);
 		ctx->is_first = 0;
 	}
 }
 
-void	handle_units_word(t_entry *entries, char *digits, t_context *ctx)
+void	handle_units_word(t_entry *entries, char *digits, t_context *ctx,
+		t_flag *fg)
 {
 	char	unit_str[2];
 	char	*word;
@@ -92,7 +119,14 @@ void	handle_units_word(t_entry *entries, char *digits, t_context *ctx)
 	if (word)
 	{
 		if (!ctx->is_first)
-			ft_putstr(" ");
+		{
+			if (fg->hyphen == 1)
+				ft_putstr("-");
+			else if (fg->and == 1)
+				ft_putstr(" and ");
+			else if (fg->comma == 1)
+				ft_putstr(", ");
+		}
 		ft_putstr(word);
 		free(word);
 		ctx->is_first = 0;
